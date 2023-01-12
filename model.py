@@ -344,7 +344,7 @@ except ImportError:
             s = (x - u).pow(2).mean(-1, keepdim=True)
             x = (x - u) / torch.sqrt(s + self.variance_epsilon)
             return self.weight * x + self.bias
-path="d:\\Epping_Boys_High_School\\Project\\Code_Implementation\\Schizoid_Man\\"
+path="d:\\Epping_Boys_Hig/kaggle/working/schizoid_man"
 a=BertConfig(vocab_size_or_config_json_file=path+"vilbert\\bert_base_2layer_2conect.json")
 
 
