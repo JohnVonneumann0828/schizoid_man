@@ -7,9 +7,10 @@ from typing import Optional
 from transformer import Transformer
 from utils import load_pretrained_weights, as_tuple
 from vilbert.vilbert import BertConnectionLayer as BCL
+from transformers import BertModel
 import copy
 resize_positional_embedding=False
-Layer_t=BertLayer(BertConfig())
+Layer_t=BertModel.from_pretrained("bert-base-uncased")
 class PositionalEmbedding1D(nn.Module):
     """Adds (optionally learned) positional embeddings to the inputs."""
 
@@ -344,8 +345,8 @@ except ImportError:
             s = (x - u).pow(2).mean(-1, keepdim=True)
             x = (x - u) / torch.sqrt(s + self.variance_epsilon)
             return self.weight * x + self.bias
-path="d:\\Epping_Boys_Hig/kaggle/working/schizoid_man"
-a=BertConfig(vocab_size_or_config_json_file=path+"vilbert\\bert_base_2layer_2conect.json")
+path="/content/schizoid_man/"
+a=BertConfig(vocab_size_or_config_json_file=path+"vilbert/bert_base_2layer_2conect.json")
 
 
 class BertEncoder(nn.Module):
@@ -554,6 +555,6 @@ class BertEncoder(nn.Module):
             (all_attention_mask_t, all_attnetion_mask_v, all_attention_mask_c),
         )
 
-model=BertEncoder(a)
+
 
 
