@@ -7,6 +7,7 @@ from typing import Optional
 from transformer import Transformer
 from utils import load_pretrained_weights, as_tuple
 from vilbert.vilbert import BertConnectionLayer as BCL
+from configs import PRETRAINED_MODELS
 from transformers import BertModel
 import copy
 resize_positional_embedding=False
@@ -367,7 +368,7 @@ class BertEncoder(nn.Module):
         self.fixed_t_layer = config.fixed_t_layer
         self.fixed_v_layer = config.fixed_v_layer
         layer = Layer_t
-        v_layer = ViT()
+        v_layer = ViT('B_16_imagenet1k', pretrained=True)
         connect_layer = BCL(config)
 
         self.layer = nn.ModuleList(
@@ -554,7 +555,6 @@ class BertEncoder(nn.Module):
             all_encoder_layers_v,
             (all_attention_mask_t, all_attnetion_mask_v, all_attention_mask_c),
         )
-
 
 
 
